@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
-    #Error messages
-    rescue_from ActiveRecord::RecordNotFound, with: :render_404
+    
+    # Error messages
+    rescue_from ActiveRecord::RecordNotFound, with: :render_404 
     rescue_from ActiveRecord::RecordInvalid, with: :render_422
 
     # GET /products
@@ -21,11 +22,11 @@ class ProductsController < ApplicationController
         render json: product, status: :created
     end
 
-    # PUT /products/:id
+    # PATCH /products/:id
     def update
         product = Product.find(params[:id])
         product.update!(product_params)
-        render json: product, status: :created
+        render json: product, status: :created 
     end
 
     # DELETE /products/:id
@@ -39,14 +40,15 @@ class ProductsController < ApplicationController
     private 
 
     def product_params
-        params.permit(:title, :description, :price)
+        params.permit(:name, :description, :price, :category, :image)
     end
 
     def render_404
-        render json: { error: "Product not found" }, status: :not_found
+        render json: {error: "Product not found"}, status: :not_found
     end
 
     def render_422(invalid)
-        render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
+        render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
     end
+
 end
