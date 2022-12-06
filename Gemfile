@@ -18,6 +18,9 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem "rack-cors"
 
+# secure password 
+gem "bcrypt"
+
 # serializers
 gem "active_model_serializers"
 
